@@ -7,7 +7,7 @@ app.controller('mainController', ['$scope', function($scope, $rootScope) {
   $scope.plus = 'glyphicon glyphicon-plus';
   $scope.minus = 'glyphicon glyphicon-minus';
   $scope.calendar = 'glyphicon glyphicon-calendar';
-  $scope.comment = 'glyphicon glyphicon-comment';
+  $scope.commentIcon = 'glyphicon glyphicon-comment';
   $scope.addComment = 'glyphicon glyphicon-pushpin';
 
   // voting function
@@ -18,7 +18,10 @@ app.controller('mainController', ['$scope', function($scope, $rootScope) {
     if(type === 'minus'){ $scope.posts[index].votes = $scope.posts[index].votes - 1};
   }
 
+  // new post hidden
   $scope.showNew = false;
+  // new comment hidden
+  $scope.showComment = false;
 
   // Counter for posts
   $scope.latestId = 5;
@@ -35,6 +38,13 @@ app.controller('mainController', ['$scope', function($scope, $rootScope) {
 
     // add one to the counter
     $scope.latestId = $scope.latestId + 1;
+  }
+
+  $scope.newComment = function(comment, index) {
+    console.log(index);
+    console.log(comment);
+    console.log($scope.posts[index]);
+    $scope.posts[index].comments.push(comment);
   }
 
   // data for posts

@@ -109,7 +109,7 @@
           <div class="row">
             <div class="col-md-12">
               <h1>{{ post.title }} | {{ post.votes }} | <span class="{{ plus }}" ng-click="vote('plus', $index)"></span><span class="{{ minus }}" ng-click="vote('minus', $index)"></span></h1>
-              <h3 class="pull-right">Author: {{post.author}}</h4>
+              <h3 class="pull-right">Author: {{post.author}}</h3>
             </div>
           </div>
 
@@ -119,12 +119,48 @@
               <!-- article -->
               <p>{{post.description}}</p>
               <!-- date, comments, and adding one -->
-              <h5><span class="{{ calendar }}"> {{ post.date | relativeDate }} | </span><span class="comments">  {{ post.comments.length }} <ng-pluralize count="post.comments.length" when="{'1': 'comment', 'other': 'comments'}"></ng-pluralize> |</span> <span class="{{ addComment }}">Add Comment</span></h5>
+              <h5><span class="{{ calendar }}"> {{ post.date | relativeDate }} | </span> <span class="{{ commentIcon }}">  {{ post.comments.length }} <ng-pluralize count="post.comments.length" when="{'1': 'comment', 'other': 'comments'}"></ng-pluralize> |</span> <span class="{{ addComment }}"></span><a ng-href="" ng-click="showComment=true">Add Comment</a></h5>
             </div>
           </div>
-        </div>    
-      </div>
 
+          <!-- comment -->
+          <form class="form-horizontal" ng-show="showComment">
+            <fieldset>
+
+              <!-- new comment -->
+              <legend>New Comment</legend>
+
+              <!-- author / text -->
+              <div class="form-group">
+                <label class="col-md-2 control-label" for="author">Author: </label>
+                <div class="col-md-8">
+                  <input id="author" name="author" type="text" placeholder="Author" class="form-control" ng-model="comment.author" required/>
+                </div>
+              </div>
+
+              <!-- Description/ Textarea -->
+              <div class="form-group">
+                <label class="col-md-2 control-label" for="comment">Comment: </label>
+                <div class="col-md-8">
+                  <textarea id="comment" name="comment" rows="3" placeholder="Comment Body" class="form-control" ng-model="comment.comment" required></textarea>
+                </div>
+              </div>
+
+              <!-- comment's buttons -->
+              <div class="row form-group">
+                <label class="col-md-2 control-label" for="submit">Submit Comment: </label>
+                <div class="col-md-3">
+                  <button id="submit" name="submit" class="btn btn-primary pull-right" ng-click="newComment(comment, $index); showComment=false;">Submit</button>
+                  <button id="cancel" name="cancel" class="btn btn-danger" ng-click="showComment=false">Cancel</button>
+                </div>
+              </div>
+
+            </fieldset>
+          </form>
+        <!-- end of row for info -->
+        </div> 
+      <!-- end of repeat -->
+      </div>
         <!-- controller end -->
     </div>
     
