@@ -10,8 +10,26 @@
   </head>
   <body>
   
-
     <div class="container-fluid" ng-controller="mainController">
+
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+              <p>CloneIt</p>
+            </a>
+          </div>
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Add New Post</a></li>
+          </ul>
+        </div>
+      </nav>
+
 
       <div class="row" ng-repeat="post in posts">
 
