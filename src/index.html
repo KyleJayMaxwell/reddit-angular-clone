@@ -56,7 +56,7 @@
         <div class="row form-group">
           <label class="col-md-2 control-label" for="title">Title: </label>
           <div class="col-md-8">
-            <input id="title" name="title" type="text" placeholder="Post Title" class="form-control" required/>
+            <input id="title" name="title" type="text" placeholder="Post Title" class="form-control" ng-model="post.title" required/>
           </div>
         </div>
 
@@ -64,7 +64,7 @@
         <div class="row form-group">
           <label class="col-md-2 control-label" for="author">Author: </label>
           <div class="col-md-8">
-            <input id="author" name="author" type="text" placeholder="Post Author" class="form-control" required/>
+            <input id="author" name="author" type="text" placeholder="Post Author" class="form-control" ng-model="post.author" required/>
           </div>
         </div>
 
@@ -72,7 +72,7 @@
         <div class="row form-group">
           <label class="col-md-2 control-label" for="image">Image Url: </label>
           <div class="col-md-8">
-            <input id="image" name="image" type="text" placeholder="Post Image URL" class="form-control" required/>
+            <input id="image" name="image" type="text" placeholder="Post Image URL" class="form-control" ng-model="post.imageUrl" required/>
           </div>
         </div>
 
@@ -80,14 +80,15 @@
         <div class="row form-group">
           <label class="col-md-2 control-label" for="description">Description: </label>
           <div class="col-md-8">
-            <textarea id="description" name="description" rows="5" placeholder="Post Description" class="form-control" required></textarea>
+            <textarea id="description" name="description" rows="5" placeholder="Post Description" class="form-control" ng-model="post.description" required></textarea>
           </div>
         </div>
 
         <div class="row form-group">
           <label class="col-md-2 control-label" for="submit">Submit Post: </label>
           <div class="col-md-3">
-            <button id="submit" name="submit" class="btn btn-primary" ng-click="showNew=false;">Submit</button>
+            <button id="submit" name="submit" class="btn btn-primary" ng-click="addNew(post); showNew=false;">Submit</button>
+            <button id="cancel" name="cancel" class="btn btn-danger" ng-click="showNew=false">Cancel</button>
           </div>
         </div>
 
@@ -118,7 +119,7 @@
               <!-- article -->
               <p>{{post.description}}</p>
               <!-- date, comments, and adding one -->
-              <h5><span class="{{ calendar }}"> {{ post.date | relativeDate }} at {{ post.date | date:'shortTime' }} | </span><span class="comments">  {{ post.comments.length }} comment(s) |</span> <span class="{{ addComment }}">Add Comment</span></h5>
+              <h5><span class="{{ calendar }}"> {{ post.date | relativeDate }} | </span><span class="comments">  {{ post.comments.length }} <ng-pluralize count="post.comments.length" when="{'1': 'comment', 'other': 'comments'}"></ng-pluralize> |</span> <span class="{{ addComment }}">Add Comment</span></h5>
             </div>
           </div>
         </div>    

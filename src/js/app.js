@@ -20,14 +20,32 @@ app.controller('mainController', ['$scope', function($scope, $rootScope) {
 
   $scope.showNew = false;
 
+  // Counter for posts
+  $scope.latestId = 5;
+
+  $scope.addNew = function(post) {
+    // fields for new post 
+    $scope.post.Id = $scope.latestId;
+    $scope.post.date = Date();
+    $scope.post.votes = 0;
+    $scope.post.comments = [];
+
+    // push the post to an array
+    $scope.post = {}
+
+    // add one to the counter
+    $scope.latestId = $scope.latestId + 1;
+  }
+
   // data for posts
   $scope.posts = [
     {
+      id: 1,
       title: 'Berlin',
       author: 'Bert Anders',
       date: new Date("Dec 31 2015 05:51:24 GMT-0600"),
       votes: 8,
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Siegessaeule_Aussicht_10-13_img4_Tiergarten.jpg/1920px-Siegessaeule_Aussicht_10-13_img4_Tiergarten.jpg',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Siegessaeule_Aussicht_10-13_img4_Tiergarten.jpg/1920px-Siegessaeule_Aussicht_10-13_img4_Tiergarten.jpg',
       description: 'Berlin is a bon vivant, passionately feasting on the smorgasbord of life, never taking things – or itself – too seriously. To me, this city is nothing short of addictive. It embraces me, inspires me, accepts me and makes me feel good about myself, the world and other people. I enjoy its iconic sights, its vast swaths of green, its sky bars and chic restaurants, but I love its gritty sides more. There\'s nothing static about Berlin: it\'s unpredictable, unpretentious and irresistible. And it loves you back – if you let it in.',
       comments: [
         { author: 'andy',
@@ -37,6 +55,7 @@ app.controller('mainController', ['$scope', function($scope, $rootScope) {
       ]
     },
     {
+      id: 2,
       title: 'Hamburg',
       author: 'Harry Hawkins',
       date: new Date("Mar 30 2016 19:18:24 GMT-0600"),
@@ -46,11 +65,10 @@ app.controller('mainController', ['$scope', function($scope, $rootScope) {
       comments: [
         { author: 'haden12',
           comment: 'Ham BURG!'},
-        { author: 'Yannis',
-          comment: 'HAMBURG!'},
       ]
     },
     {
+      id: 3,
       title: 'Munich',
       author: 'Maxwell Atkin',
       date: new Date("Apr 1 2016 09:56:24 GMT-0600"),
@@ -65,6 +83,7 @@ app.controller('mainController', ['$scope', function($scope, $rootScope) {
       ]
     },
     {
+      id: 4,
       title: 'Frankfurt',
       author: 'Frank Antony',
       date: new Date("Apr 4 2016 09:56:24 GMT-0600"),
@@ -72,10 +91,6 @@ app.controller('mainController', ['$scope', function($scope, $rootScope) {
       image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/FrankfurtSkyline2014.jpg/560px-FrankfurtSkyline2014.jpg',
       description: 'Frankfurt is a centre for commerce, culture, education, tourism and web traffic. Messe Frankfurt is one of the world\'s largest trade fairs at 578,000 square metres and ten exhibition halls. Major trade fairs include the Frankfurt Motor Show, the world\'s largest motor show, and the Frankfurt Book Fair, the world\'s largest book fair.',
       comments: [
-        { author: 'Franky1',
-          comment: 'FRANK furt!'},
-        { author: 'Rob',
-          comment: 'Frankfurt!'},
       ]
     }
   ];
