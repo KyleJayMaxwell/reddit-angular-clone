@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app='myApp'>
+<html lang="en" ng-app='cloneit'>
   <head>
     <meta charset="utf-8">
     <title>Reddit Clone</title>
@@ -12,10 +12,11 @@
 
 
     <div class="container">
-      <div ng-controller="myController">
+      <div ng-controller="mainController">
         <div ng-repeat="post in posts">
           <h1>{{ post.title }}</h1>
           <h3>{{ post.author }}</h3>
+          <p>{{ post.description }}</p>
         </div>
 
         <!-- controller end -->

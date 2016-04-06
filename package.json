@@ -1,7 +1,7 @@
 {
-  "name": "update-me",
-  "version": "0.0.0",
-  "description": "",
+  "name": "Cloneit",
+  "version": "0.0.1",
+  "description": "Reddit clone with Angular",
   "main": "gulpfile.js",
   "author": "",
   "license": "ISC",
