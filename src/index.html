@@ -2,17 +2,23 @@
 <html lang="en" ng-app='myApp'>
   <head>
     <meta charset="utf-8">
-    <title>Untitled</title>
+    <title>Reddit Clone</title>
     
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    
     <link rel="stylesheet" type="text/css" href="css/main.css">
+
   </head>
   <body>
-    <!-- sample angular code -->
+
+
     <div class="container">
       <div ng-controller="myController">
-        <p>{{ greeting }}</p>
+        <div ng-repeat="post in posts">
+          <h1>{{ post.title }}</h1>
+          <h3>{{ post.author }}</h3>
+        </div>
+
+        <!-- controller end -->
       </div>
     </div>
     
