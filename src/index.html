@@ -40,11 +40,18 @@
           <!-- form end -->
 
           <ul class="nav navbar-nav navbar-right">
-            <!-- new post -->
-            <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Add New Post</a></li>
+            <!-- new post with logic to show the new post-->
+            <li><a ng-href="" ng-click="showNew=true"><span class="glyphicon glyphicon-pencil"></span> Add New Post</a></li>
           </ul>
         </div>
       </nav>
+
+    <!-- New Post -->
+    <form class="form-horizontal" ng-show="showNew">
+      <fieldset>
+        <legend>New Post</legend>
+      </fieldset>
+    </form>
 
       
       <!-- repeating through posts, with search and sort -->
@@ -59,7 +66,7 @@
         <div class="col-md-9">
           <div class="row">
             <div class="col-md-12">
-              <h1>{{ post.title }} | {{ post.votes }} | <span class="{{ plus }}"></span><span class="{{ minus }}"></span></h1>
+              <h1>{{ post.title }} | {{ post.votes }} | <span class="{{ plus }}" ng-click="vote('plus', $index)"></span><span class="{{ minus }}" ng-click="vote('minus', $index)"></span></h1>
               <h3 class="pull-right">Author: {{post.author}}</h4>
             </div>
           </div>

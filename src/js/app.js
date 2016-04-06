@@ -1,14 +1,26 @@
 
 var app = angular.module('cloneit', ['relativeDate']);
 
-app.controller('mainController', ['$scope', function($scope) {
+app.controller('mainController', ['$scope', function($scope, $rootScope) {
 
+  // defined icons
   $scope.plus = 'glyphicon glyphicon-plus';
   $scope.minus = 'glyphicon glyphicon-minus';
   $scope.calendar = 'glyphicon glyphicon-calendar';
   $scope.comment = 'glyphicon glyphicon-comment';
   $scope.addComment = 'glyphicon glyphicon-pushpin';
 
+  // voting function
+  $scope.vote = function(type, index){
+    // up vote
+    if(type === 'plus'){ $scope.posts[index].votes = $scope.posts[index].votes + 1};
+    // down vote
+    if(type === 'minus'){ $scope.posts[index].votes = $scope.posts[index].votes - 1};
+  }
+
+  $scope.showNew = false;
+
+  // data for posts
   $scope.posts = [
     {
       title: 'Berlin',
