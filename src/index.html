@@ -9,18 +9,34 @@
 
   </head>
   <body>
+  
 
+    <div class="container-fluid" ng-controller="mainController">
 
-    <div class="container">
-      <div ng-controller="mainController">
-        <div ng-repeat="post in posts">
-          <h1>{{ post.title }}</h1>
-          <h3>{{ post.author }}</h3>
-          <p>{{ post.description }}</p>
+      <div class="row" ng-repeat="post in posts">
+
+        <div class="col-md-3">
+          <img ng-src="{{ post.image }}">
         </div>
 
-        <!-- controller end -->
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-12">
+              <h1>{{ post.title }} | {{ post.votes }} | <span class="{{ plus }}"></span><span class="{{ minus }}"></span></h1>
+              <h3 class="pull-right">Author: {{post.author}}</h4>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <p>{{post.description}}</p>
+              <h5><span class="{{ calendar }}"> {{ post.date }} | </span><span class="comments"> {{ post.comments.length }} comment(s) |</span> <span class="{{ addComment }}">Add Comment</span></h5>
+            </div>
+          </div>
+        </div>    
       </div>
+
+        <!-- controller end -->
     </div>
     
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
