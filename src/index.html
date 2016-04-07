@@ -88,7 +88,7 @@
         <div class="row form-group">
           <label class="col-md-2 control-label" for="submit">Submit Post: </label>
           <div class="col-md-3">
-            <button id="submit" name="submit" class="btn btn-primary" ng-click="addNew(post); showNew=false;">Submit</button>
+            <button id="submit" name="submit" class="btn btn-primary" ng-click="addNew(); showNew=false;">Submit</button>
             <button id="cancel" name="cancel" class="btn btn-danger" ng-click="showNew=false">Cancel</button>
           </div>
         </div>
@@ -98,7 +98,7 @@
 
       
       <!-- repeating through posts, with search and sort -->
-      <div class="row" ng-repeat="post in posts | filter:search | orderBy:sort:'votes'">
+      <div class="row" ng-repeat="post in posts | filter:search | orderBy:sort">
 
         <!-- image of post -->
         <div class="col-md-3">

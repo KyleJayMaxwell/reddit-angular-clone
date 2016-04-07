@@ -13,10 +13,12 @@ app.controller('mainController', ['$scope', function($scope, $rootScope) {
   // voting function
   $scope.vote = function(type, id){
     // up vote
-    if(type === 'plus'){ $scope.posts[id].votes = $scope.posts[id].votes + 1};
+    if(type === 'plus'){ $scope.posts[id].votes = $scope.posts[id].votes + 1;}
     // down vote
-    if(type === 'minus'){ $scope.posts[id].votes = $scope.posts[id].votes - 1};
-  }
+    if(type === 'minus'){ $scope.posts[id].votes = $scope.posts[id].votes - 1;}
+  };
+
+  $scope.sort = 'votes';
 
   // new post hidden
   $scope.showNew = false;
@@ -26,25 +28,25 @@ app.controller('mainController', ['$scope', function($scope, $rootScope) {
   $scope.showAllComments = false;
 
   // Counter for posts
-  $scope.latestId = 5;
+  $scope.latestId = 4;
 
-  $scope.addNew = function(post) {
+  $scope.addNew = function() {
     // fields for new post 
-    $scope.post.Id = $scope.latestId;
+    $scope.post.id = $scope.latestId;
     $scope.post.date = Date();
     $scope.post.votes = 0;
     $scope.post.comments = [];
 
     // push the post to an array
-    $scope.post = {}
+    $scope.posts.push($scope.post)
 
     // add one to the counter
     $scope.latestId = $scope.latestId + 1;
-  }
+  };
 
   $scope.newComment = function(comment, id) {
     $scope.posts[id].comments.push(comment);
-  }
+  };
 
   // data for posts
   $scope.posts = [
