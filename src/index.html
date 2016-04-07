@@ -32,7 +32,8 @@
             <!-- sort by -->
             <div class="form-group">
               <select name="sort" ng-model="sort" ng-init="post.votes">
-                <option value="votes">Votes</option>
+                <option value="votes" selected>Votes</option>
+                <option value="title">Title</option>
                 <option value="date">Dates</option>
               </select>
             </div>
@@ -41,7 +42,7 @@
 
           <ul class="nav navbar-nav navbar-right">
             <!-- new post with logic to show the new post-->
-            <li><a ng-href="" ng-click="showNew=true"><span class="glyphicon glyphicon-pencil"></span> Add New Post</a></li>
+            <li><a ng-href="" ng-click="showNew=true"><i class="glyphicon glyphicon-pencil"></i> Add New Post</a></li>
           </ul>
         </div>
       </nav>
@@ -97,7 +98,7 @@
 
       
       <!-- repeating through posts, with search and sort -->
-      <div class="row" ng-repeat="post in posts | filter:search | orderBy:sort">
+      <div class="row" ng-repeat="post in posts | filter:search | orderBy:sort:'votes'">
 
         <!-- image of post -->
         <div class="col-md-3">
@@ -108,7 +109,7 @@
         <div class="col-md-9">
           <div class="row">
             <div class="col-md-12">
-              <h1>{{ post.title }} | {{ post.votes }} | <span class="{{ plus }}" ng-click="vote('plus', $index)"></span><span class="{{ minus }}" ng-click="vote('minus', $index)"></span></h1>
+              <h1>{{ post.title }} | {{ post.votes }} | <i class="{{ plus }}" ng-click="vote('plus', post.id)"></i><i class="{{ minus }}" ng-click="vote('minus', post.id)"></i></h1>
               <h3 class="pull-right">Author: {{post.author}}</h3>
             </div>
           </div>
@@ -119,12 +120,22 @@
               <!-- article -->
               <p>{{post.description}}</p>
               <!-- date, comments, and adding one -->
-              <h5><span class="{{ calendar }}"> {{ post.date | relativeDate }} | </span> <span class="{{ commentIcon }}">  {{ post.comments.length }} <ng-pluralize count="post.comments.length" when="{'1': 'comment', 'other': 'comments'}"></ng-pluralize> |</span> <span class="{{ addComment }}"></span><a ng-href="" ng-click="showComment=true">Add Comment</a></h5>
+              <h5><i class="{{ calendar }}"> {{ post.date | relativeDate }} | </i> 
+              <a ng-href="" ng-click="showAllComments=true"><i class="{{ commentIcon }}"> {{ post.comments.length }} <ng-pluralize count="post.comments.length" when="{'1': 'comment', 'other': 'comments'}"></ng-pluralize> |</i></a> 
+              <a ng-href="" ng-click="showNewComment=true"><i class="{{ addComment }}"></i>Add Comment</h5></a>
             </div>
           </div>
 
-          <!-- comment -->
-          <form class="form-horizontal" ng-show="showComment">
+          <div ng-show="showAllComments">
+            <div class="row" ng-repeat="comment in post.comments">
+              <h6>{{ comment.author }}</h6>
+              <p>{{ comment.comment }}</p>  
+            </div>
+            <button ng-click="showAllComments=false">Hide</button>
+          </div>
+
+          <!-- add comment -->
+          <form class="form-horizontal" ng-show="showNewComment">
             <fieldset>
 
               <!-- new comment -->
@@ -150,8 +161,8 @@
               <div class="row form-group">
                 <label class="col-md-2 control-label" for="submit">Submit Comment: </label>
                 <div class="col-md-3">
-                  <button id="submit" name="submit" class="btn btn-primary pull-right" ng-click="newComment(comment, $index); showComment=false;">Submit</button>
-                  <button id="cancel" name="cancel" class="btn btn-danger" ng-click="showComment=false">Cancel</button>
+                  <button id="submit" name="submit" class="btn btn-primary pull-right" ng-click="newComment(comment, post.id); showNewComment=false; comment={};">Submit</button>
+                  <button id="cancel" name="cancel" class="btn btn-danger" ng-click="showNewComment=false">Cancel</button>
                 </div>
               </div>
 

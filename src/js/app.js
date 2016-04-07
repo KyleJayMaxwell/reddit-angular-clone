@@ -11,17 +11,19 @@ app.controller('mainController', ['$scope', function($scope, $rootScope) {
   $scope.addComment = 'glyphicon glyphicon-pushpin';
 
   // voting function
-  $scope.vote = function(type, index){
+  $scope.vote = function(type, id){
     // up vote
-    if(type === 'plus'){ $scope.posts[index].votes = $scope.posts[index].votes + 1};
+    if(type === 'plus'){ $scope.posts[id].votes = $scope.posts[id].votes + 1};
     // down vote
-    if(type === 'minus'){ $scope.posts[index].votes = $scope.posts[index].votes - 1};
+    if(type === 'minus'){ $scope.posts[id].votes = $scope.posts[id].votes - 1};
   }
 
   // new post hidden
   $scope.showNew = false;
   // new comment hidden
-  $scope.showComment = false;
+  $scope.showNewComment = false;
+  // comments hidden
+  $scope.showAllComments = false;
 
   // Counter for posts
   $scope.latestId = 5;
@@ -40,17 +42,14 @@ app.controller('mainController', ['$scope', function($scope, $rootScope) {
     $scope.latestId = $scope.latestId + 1;
   }
 
-  $scope.newComment = function(comment, index) {
-    console.log(index);
-    console.log(comment);
-    console.log($scope.posts[index]);
-    $scope.posts[index].comments.push(comment);
+  $scope.newComment = function(comment, id) {
+    $scope.posts[id].comments.push(comment);
   }
 
   // data for posts
   $scope.posts = [
     {
-      id: 1,
+      id: 0,
       title: 'Berlin',
       author: 'Bert Anders',
       date: new Date("Dec 31 2015 05:51:24 GMT-0600"),
@@ -65,7 +64,7 @@ app.controller('mainController', ['$scope', function($scope, $rootScope) {
       ]
     },
     {
-      id: 2,
+      id: 1,
       title: 'Hamburg',
       author: 'Harry Hawkins',
       date: new Date("Mar 30 2016 19:18:24 GMT-0600"),
@@ -78,7 +77,7 @@ app.controller('mainController', ['$scope', function($scope, $rootScope) {
       ]
     },
     {
-      id: 3,
+      id: 2,
       title: 'Munich',
       author: 'Maxwell Atkin',
       date: new Date("Apr 1 2016 09:56:24 GMT-0600"),
@@ -93,7 +92,7 @@ app.controller('mainController', ['$scope', function($scope, $rootScope) {
       ]
     },
     {
-      id: 4,
+      id: 3,
       title: 'Frankfurt',
       author: 'Frank Antony',
       date: new Date("Apr 4 2016 09:56:24 GMT-0600"),
