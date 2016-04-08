@@ -12,6 +12,7 @@
     <!-- main controller / container -->
     <div class="container-fluid" ng-controller="mainController">
 
+
       <!-- Nav Bar -->
       <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -20,7 +21,6 @@
               <p>CloneIt</p>
             </a>
           </div>
-
           <!-- form beginning -->
           <form class="navbar-form navbar-left" role="search">
             <!-- search -->
@@ -37,7 +37,6 @@
             </div>
           </form>
           <!-- form end -->
-
           <ul class="nav navbar-nav navbar-right">
             <!-- new post with logic to show the new post-->
             <li><a ng-href="" ng-click="showNew=true"><i class="glyphicon glyphicon-pencil"></i> Add New Post</a></li>
@@ -45,14 +44,11 @@
         </div>
       </nav>
 
-
-
     <!-- New Post -->
     <form class="form-horizontal" ng-show="showNew">
       <fieldset>
         <!-- form name -->
-        <legend>New Post</legend>
-        
+        <legend>New Post</legend> 
         <!-- title / text input -->
         <div class="row form-group">
           <label class="col-md-2 control-label" for="title">Title: </label>
@@ -60,7 +56,6 @@
             <input id="title" name="title" type="text" placeholder="Post Title" class="form-control" ng-model="post.title" required/>
           </div>
         </div>
-
         <!-- Author / text input -->
         <div class="row form-group">
           <label class="col-md-2 control-label" for="author">Author: </label>
@@ -68,7 +63,6 @@
             <input id="author" name="author" type="text" placeholder="Post Author" class="form-control" ng-model="post.author" required/>
           </div>
         </div>
-
         <!-- image / text input -->
         <div class="row form-group">
           <label class="col-md-2 control-label" for="image">Image Url: </label>
@@ -76,7 +70,6 @@
             <input id="image" name="image" type="text" placeholder="Post Image URL" class="form-control" ng-model="post.imageUrl" required/>
           </div>
         </div>
-
         <!-- description / textarea -->
         <div class="row form-group">
           <label class="col-md-2 control-label" for="description">Description: </label>
@@ -84,7 +77,6 @@
             <textarea id="description" name="description" rows="5" placeholder="Post Description" class="form-control" ng-model="post.description" required></textarea>
           </div>
         </div>
-
         <div class="row form-group">
           <label class="col-md-2 control-label" for="submit">Submit Post: </label>
           <div class="col-md-3">
@@ -92,19 +84,16 @@
             <button id="cancel" name="cancel" class="btn btn-danger" ng-click="showNew=false">Cancel</button>
           </div>
         </div>
-
       </fieldset>
     </form>
 
       
       <!-- repeating through posts, with search and sort -->
       <div class="row" ng-repeat="post in posts | filter:search | orderBy:sort">
-
         <!-- image of post -->
         <div class="col-md-3">
           <img class="full" ng-src="{{ post.image }}">
         </div>
-
         <!-- title, author -->
         <div class="col-md-9">
           <div class="row">
@@ -113,8 +102,6 @@
               <h3 class="pull-right">Author: {{post.author}}</h3>
             </div>
           </div>
-
-
           <div class="row">
             <div class="col-md-12">
               <!-- article -->
@@ -125,7 +112,6 @@
               <a ng-href="" ng-click="showNewComment=true"><i class="{{ addComment }}"></i>Add Comment</h5></a>
             </div>
           </div>
-
           <div ng-show="showAllComments">
             <div class="row" ng-repeat="comment in post.comments">
               <h6>{{ comment.author }}</h6>
@@ -134,13 +120,12 @@
             <button ng-click="showAllComments=false">Hide</button>
           </div>
 
+
           <!-- add comment -->
           <form class="form-horizontal" ng-show="showNewComment">
             <fieldset>
-
               <!-- new comment -->
               <legend>New Comment</legend>
-
               <!-- author / text -->
               <div class="form-group">
                 <label class="col-md-2 control-label" for="author">Author: </label>
@@ -148,7 +133,6 @@
                   <input id="author" name="author" type="text" placeholder="Author" class="form-control" ng-model="comment.author" required/>
                 </div>
               </div>
-
               <!-- Description/ Textarea -->
               <div class="form-group">
                 <label class="col-md-2 control-label" for="comment">Comment: </label>
@@ -156,7 +140,6 @@
                   <textarea id="comment" name="comment" rows="3" placeholder="Comment Body" class="form-control" ng-model="comment.comment" required></textarea>
                 </div>
               </div>
-
               <!-- comment's buttons -->
               <div class="row form-group">
                 <label class="col-md-2 control-label" for="submit">Submit Comment: </label>
@@ -165,18 +148,19 @@
                   <button id="cancel" name="cancel" class="btn btn-danger" ng-click="showNewComment=false">Cancel</button>
                 </div>
               </div>
-
             </fieldset>
           </form>
+
         <!-- end of row for info -->
         </div> 
+
       <!-- end of repeat -->
       </div>
+
         <!-- controller end -->
     </div>
     
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>    
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!-- angular -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
